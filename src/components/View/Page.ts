@@ -10,14 +10,14 @@ export class Page extends View<TPage> implements IPage {
     protected buttonBasket: HTMLButtonElement;// показывает количество добавленных товаров в корзину
     protected pageContent: HTMLDivElement;// отвечает за внутренннее содержимое страницы
 
-    constructor(container: HTMLElement, events: IEvents) {// передаю параметры класса View
+    constructor(container: HTMLElement, events: IEvents) {
         super(container, events);
         this.buttonBasket = ensureElement<HTMLButtonElement>('.header__basket', container);
         this.buttonBasket.addEventListener('click', () => events.emit('modal-basket:open'));
-        this._catalog = ensureElement<HTMLElement>('.gallery', container);
         this._count = ensureElement<HTMLSpanElement>('.header__basket-counter', this.buttonBasket);
-        this.pageContent = ensureElement<HTMLDivElement>('.page__wrapper', container);
-    }
+        this._catalog = ensureElement<HTMLElement>('.gallery', container);
+        this.pageContent = ensureElement<HTMLDivElement>('.page__wrapper', container)
+       }
 
     set catalog(cards: HTMLElement[]) {// записывает карточки в _catalog для отображения их на главной странице
         this._catalog.replaceChildren(...cards);

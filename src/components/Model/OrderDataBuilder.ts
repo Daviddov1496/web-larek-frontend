@@ -1,10 +1,9 @@
-import { IClient, IOrderConstructor, IOrderData, IOrderDataBuilder, TContactsInfo, TDeliveryInfo, TPurchasesInfo } from "../../types";
+import { IOrderConstructor, IOrderData, IOrderDataBuilder, TContactsInfo, TDeliveryInfo, TPurchasesInfo } from "../../types";
 import { IEvents } from "../base/events";
 import { Model } from "./Model";
 
-/** Класс OrderDataBuilder
-Расширяет класс Model. Класс является билдером класса OrderData. Т.к. формирование заказа происходит в 3 этапа:
-    1 - добавление товаров в корзину, 
+/** Класс OrderDataBuilder расширяет класс Model. Класс является билдером класса OrderData. Т.к. формирование заказа происходит в 3 этапа:
+    1 - добавление товаров в корзину,
     2 - указание способа покупки и адреса доставки, 
     3 - указание email и телефона. 
 Экземпляр класса OrderData также создается поэтапно, благодаря классу OrderDataBuilder. */
@@ -31,7 +30,7 @@ export class OrderDataBuilder extends Model implements IOrderDataBuilder {
         this.order.phone = info.phone;
     }
 
-    getOrderData(): IClient { // возвращает всю информацию и сеттеров выше в заказ для показа готового списка
+    getOrderData() {// возвращает всю информацию и сеттеров выше в заказ для показа готового списка
         return this.order;
     }
 }
