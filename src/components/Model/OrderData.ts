@@ -1,9 +1,7 @@
-import { IClient, IOrderData, TPayment } from "../../types";
+import { IOrderData, TPayment } from "../../types";
 
-/** Класс OrderData
-Класс отвечает за хранение и логику данных при оформлении заказа в корзине. */
+/** Класс OrderData отвечает за хранение и логику данных при оформлении заказа в корзине. */
 export class OrderData implements IOrderData {
-    protected _customerInfo: IClient;
     protected _payment: TPayment; // способ оплаты
     protected _email: string; //  почта покупателя
     protected _phone: string; // телефон покупателя
@@ -39,7 +37,7 @@ export class OrderData implements IOrderData {
         this._items = value;
     }
 
-    get customerInfo() {// возвращение всей информации о заказе в формате необходимом для отправки в теле post запроса на сервер. 
+    get clientInfo() {// возвращение всей информации о заказе в формате необходимом для отправки в теле post запроса на сервер. 
         return {
             payment: this._payment,
 			email: this._email,

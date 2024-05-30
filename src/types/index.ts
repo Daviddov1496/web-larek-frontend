@@ -1,5 +1,3 @@
-import { IEvents } from "../components/base/events";
-
 /** Описание товара  */
 export interface IProduct {
     id: string;
@@ -28,18 +26,11 @@ export interface IBasketData {
     clear(): void;
   }
 
-/**  Интерфейс корзины  */
+/** Интерфейс корзины  */
 export interface IBasketModel { 
     product: Map<string, number>;
     add(id: string): void;
     remove(id: string): void;
-}
-
-/** Интерфейс для хранения списка товаров */ 
-export interface CatalogModel { 
-    product: IProduct[]; // список товаров
-    setItems(items: IProduct[]): void; // чтобы установить после загрузки апи // Метод чтобы сохранить с сервера
-    getProduct(id: string): IProduct; // чтобы получить при рендере сприсков // метод чтобы получать список по необходимости
 }
 
 /** Интерфейс для модального окна заказа */
@@ -51,30 +42,21 @@ export interface IOrderForm {
     total?: string | number;
 }
 
-/** интерфейс конструктора ,на входе d контейнер в который будем выводить */
-export interface IViewConstructor { 
-    new (container: HTMLElement, events?: IEvents): IView; 
-}
-
-/** интерфейс отображения */ 
-export interface IView { // устанавливаем данные и возвращаем контейнер  
-    render(data?: object): HTMLElement; // Он получает данные и возвращает разметку с заполненными данными
-}
-
 /** интерфейс принимающий информацию о клиенте */ 
-export interface IClient {
+export interface IClient{
     payment: TPayment;
     email: string;
     phone: string;
     address: string;
     total: number;
     items: string[];
-}
-  
+  }
+/** интерфейс для хранение данных и логики при оформлении заказа в корзине */
 export interface IOrderData extends IClient {
-    customerInfo: IClient;
-}
+    clientInfo: IClient;
+  }
 
+/** интерфейс для 3-х этапного формирование заказа */
 export interface IOrderDataBuilder {
     purchasesInfo: TPurchasesInfo;
     deliveryInfo: TDeliveryInfo;
@@ -91,46 +73,53 @@ export interface IOrderConstructor {
 export interface ISuccessData {
     orderSuccess: TSuccessData;
 }
-/** интерфейс  */
+/** общий интерфейс карточки */
 export interface ICard {
     id: string;
     title: string;
     price: string;
 }
-/** интерфейс  */
+
+/** интерфейс для отображения карточки в каталоге на главной странице приложения */
 export interface ICardCatalog {
     image: string;
     category: string;
 }
-/** интерфейс  */
+
+/** интерфейс для отображения карточки товара в корзине */
 export interface ICardBasket {
     index: number;
 }
-/** интерфейс  */
+
+/** интерфейс для предварительного просмотра карточки товара с более детальным описанием и возможностью добавления его в корзину */
 export interface ICardPreview {
     description: string;
     priceCheck: boolean;
     state: boolean;
 }
-/** интерфейс  */
+
+/** интерфейс отображения контента на странице */
 export interface IPage {
     catalog: HTMLElement[];
     count: number;
     lockScreen(value: boolean): void;
 }
-/** интерфейс  */
+
+/** интерфейс модальных окон */
 export interface IModal {
     content: HTMLElement;
     open(): void;
     close(): void;
 }
-/** интерфейс  */
+
+/** интерфейс для форм приложения */
 export interface IForm {
     valid: boolean;
     errorMessage: string;
     clear(): void;
 }
-/** интерфейс  */
+
+/** интерфейс для указания способа доставки и адреса доставки */
 export interface IFormOrder {
     payment: TPayment | null;
     address: string;
@@ -138,22 +127,25 @@ export interface IFormOrder {
     clear(): void; 
     render(data: object ): HTMLElement; 
 }
+
 /** интерфейс для указания телефона и email покупателя */
 export interface IFormContacts {
     email: string;
     phone: string;
     valid: boolean;
 }
+
 /** интерфейс уведомления об успешной покупке */
 export interface ISuccess {
     description: string;
 }
+
 /** интерфейс предоставляет методы реализующие взаимодействие с сервером */
 export interface IApiExtender {
     getProducts(): Promise<IProduct[]>;
     getProductById(id: string): Promise<IProduct>;
-    postOrder(order: IClient): Promise<TSuccessData>;
-  }
+    postOrder(order:IClient): Promise<TSuccessData>;
+}
 
 export type TPurchasesInfo = Pick<IClient, 'total' | 'items'>;
 export type TDeliveryInfo = Pick<IClient, 'payment' | 'address'>;

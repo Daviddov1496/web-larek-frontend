@@ -6,7 +6,7 @@ import { View } from "./View";
 /** Класс Form расширяет класс View. Является абстрактным классом дженериком и шаблоном для форм приложения. Реализует пользовательский функционал с формами. */
 export abstract class Form<T> extends View<TForm> implements IForm {
     protected _errorMessage: HTMLSpanElement;// для отображения ошибок формы
-    protected _container: HTMLFormElement;// форма
+    protected container: HTMLFormElement;// форма
     protected _inputList: HTMLInputElement[];// массив инпутов формы
     protected _submitButton: HTMLButtonElement;// кнопка отправки формы(сабмита)
 
@@ -15,12 +15,12 @@ export abstract class Form<T> extends View<TForm> implements IForm {
         this._inputList = ensureAllElements<HTMLInputElement>('.form__input', container);
         this._submitButton = ensureElement<HTMLButtonElement>('button[type=submit]', container);
         this._errorMessage = ensureElement<HTMLSpanElement>('.form__errors' , container);
-        this._container.addEventListener('submit', (event: Event) => {
+        this.container.addEventListener('submit', (event: Event) => {
             event.preventDefault();// отключаю повеение по-умолчанию
-            this.events.emit(`${this._container.name}:submit`)
+            this.events.emit(`${this.container.name}:submit`)
         });
         this._inputList.forEach(input => {
-            input.addEventListener('input', () => this.events.emit(`${this._container.name}:valid`))
+            input.addEventListener('input', () => this.events.emit(`${this.container.name}:valid`))
         });
     }
     
@@ -37,7 +37,7 @@ export abstract class Form<T> extends View<TForm> implements IForm {
     }
 
     clear(): void {// очистка формы
-        this._container.reset();
+        this.container.reset();
     }
 
     render(data: Partial<T> & TForm ): HTMLElement {// рендер с учетом валидности и сообшений об ошибках
