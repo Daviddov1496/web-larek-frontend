@@ -26,15 +26,15 @@ export class FormOrder extends Form<TFormOrder> implements IFormOrder {
           })
     }
 
-    protected resetButtons(): void {// очищает класс активности с кнопок "Онлайн" и "При получении"
-        this._buttonCard.classList.remove('button_alt-active');
-        this._buttonCash.classList.remove('button_alt-active');
-    }
-
     protected getButtonActive(): HTMLButtonElement | null {// метод: возвращает кнопку, которая активна
         if(this._buttonCard.classList.contains('button_alt-active')) {return this._buttonCard}
         else if(this._buttonCash.classList.contains('button_alt-active')) {return this._buttonCash}
         return null;
+    }
+
+    protected resetButtons(): void {// очищает класс активности с кнопок "Онлайн" и "При получении"
+        this._buttonCard.classList.remove('button_alt-active');
+        this._buttonCash.classList.remove('button_alt-active');
     }
 
     clear() {// Очищает форму

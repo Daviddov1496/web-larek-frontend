@@ -26,7 +26,7 @@ export class CardPreview extends CardCatalog<TCardPreview> implements ICardPrevi
         this._description.textContent = value;
     }
 
-    set priceCheck(value: boolean) {// записывает булево значение для блокировки/разблокировки кнопки добавления в корзину: true - блокирует, false - разблокирует
+    set priceCheck(value: boolean) {// записывает булево значение для блокировки кнопки добавления в корзину
         this.buttonBuyDelete.disabled = !value;
     }
 

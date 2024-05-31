@@ -16,7 +16,7 @@ export abstract class Form<T> extends View<TForm> implements IForm {
         this._submitButton = ensureElement<HTMLButtonElement>('button[type=submit]', container);
         this._errorMessage = ensureElement<HTMLSpanElement>('.form__errors' , container);
         this.container.addEventListener('submit', (event: Event) => {
-            event.preventDefault();// отключаю повеение по-умолчанию
+            event.preventDefault();// отключаю поведение по-умолчанию
             this.events.emit(`${this.container.name}:submit`)
         });
         this._inputList.forEach(input => {

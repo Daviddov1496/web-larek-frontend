@@ -101,7 +101,7 @@ export interface ICardPreview {
 /** интерфейс отображения контента на странице */
 export interface IPage {
     catalog: HTMLElement[];
-    count: number;
+    counter: number;
     lockScreen(value: boolean): void;
 }
 

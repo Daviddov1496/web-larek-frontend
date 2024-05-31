@@ -12,7 +12,7 @@ export class CardBasket extends Card<TCardBasket> implements ICardBasket {
         super(container, events);
         this._index = ensureElement<HTMLSpanElement>('.basket__item-index', container);
         this.deleteCardButton = ensureElement<HTMLButtonElement>('.basket__item-delete', container);
-        this.deleteCardButton.addEventListener('click', () => this.events.emit('purchase:delete', {id: this.id}));
+        this.deleteCardButton.addEventListener('click', () => this.events.emit('purchases:delete', {id: this.id}));
     }
 
     set index(value: number) {// записывает порядковый номер карточки в корзине

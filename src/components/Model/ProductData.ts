@@ -13,7 +13,7 @@ export class ProductsData extends Model implements IProductsData {
 
     set products(value: IProduct[]) { // записывает массив продуктов, добавленных в корзину
         this._products = value;
-        this.events.emit('products:chaged', this._products); // генерирует событие 'products:changed', которое оповещает другие части программы об изменениях в данных о продуктах.
+        this.events.emit('products:changed', this._products); // генерирует событие 'products:changed', которое оповещает другие части программы об изменениях в данных о продуктах.
     }
 
     get products() { // возвращает массив продуктов, добавленных в корзину
