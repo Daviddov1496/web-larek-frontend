@@ -21,12 +21,12 @@ export class Modal extends View<TModal> implements IModal {
     }
 
     open(): void {// открытие модального окна
-        this.container.classList.add('modal_active')
+        this.toggleClass(this.container, 'modal_active', true);
         this.events.emit('modal:open')
     }
     close(): void {// закрытие модального окна
-        this.container.classList.remove('modal_active')
-        this.events.emit('modal:close')
+        this.toggleClass(this.container, 'modal_active', false);
+        this.events.emit('modal:close');
     }
     
     set content(value: HTMLElement) {// для возможности изменения внутреннего содержимого модального окна

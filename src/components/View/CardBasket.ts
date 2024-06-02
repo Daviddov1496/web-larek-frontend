@@ -16,6 +16,6 @@ export class CardBasket extends Card<TCardBasket> implements ICardBasket {
     }
 
     set index(value: number) {// записывает порядковый номер карточки в корзине
-        this._index.textContent = String(value);
+       this.setText(this._index, String(value));
     }
 }

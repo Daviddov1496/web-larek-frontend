@@ -16,6 +16,6 @@ export class Success extends View<TSuccess> implements ISuccess {
       }
 
     set description(total: string) {// устанавливает количество потраченных средств в html элемент _description.
-        this._description.textContent = `Списано ${total} синапсов`
+        this.setText(this._description, `Списано ${total} синапсов`)
     }
 }

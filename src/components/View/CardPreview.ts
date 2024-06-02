@@ -23,11 +23,11 @@ export class CardPreview extends CardCatalog<TCardPreview> implements ICardPrevi
     }
 
     set description(value: string) {// записвает описание товара
-        this._description.textContent = value;
+        this.setText(this._description, value);
     }
 
     set priceCheck(value: boolean) {// записывает булево значение для блокировки кнопки добавления в корзину
-        this.buttonBuyDelete.disabled = !value;
+        this.setDisabled(this.buttonBuyDelete, !value);
     }
 
     get priceCheck() {// возвращает булево значение для блокировки кнопки добавления в корзину

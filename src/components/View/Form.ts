@@ -29,11 +29,11 @@ export abstract class Form<T> extends View<TForm> implements IForm {
     }
 
     set valid(value: boolean) {// для актиации кнопки отправки формы
-        this._submitButton.disabled = value;
+        this.setDisabled(this._submitButton, value);
     }
 
     set errorMessage(value: string) {// установка ошибок
-        this._errorMessage.textContent = value;
+        this.setText(this._errorMessage, value);
     }
 
     clear(): void {// очистка формы

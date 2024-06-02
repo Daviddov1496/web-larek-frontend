@@ -24,7 +24,7 @@ export class Page extends View<TPage> implements IPage {
     }
 
     set counter(value: number) {// записывает количество добавленных товаров в корзину
-        this._counter.textContent = String(value);
+        this.setText(this._counter, String(value));
     }
 
     lockScreen(value: boolean): void {// метод для блокировки прокрутки при открытии модального окна

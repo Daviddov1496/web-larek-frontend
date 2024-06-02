@@ -39,6 +39,6 @@ export class FormContacts extends Form<TFormContacts> implements IFormContacts {
     }
 
     set valid(value: boolean) {// запись для блокировки кнопки submit
-        super.valid = value;
+        this.setDisabled(this._submitButton, value);
     }
 }

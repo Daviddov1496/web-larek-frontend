@@ -28,7 +28,7 @@ export abstract class Card<T> extends View<T> implements ICard {
     }
 
     set title(value: string) {//запись имени карточки товара
-        this._title.textContent = value;
+        this.setText(this._title, value);
     }
 
     get title() {// получение имени карточки товара
@@ -36,7 +36,7 @@ export abstract class Card<T> extends View<T> implements ICard {
     }
 
     set price(value: string) {// запись цены товара
-        this._price.textContent = value ? `${value} синапсов` : `Бесценно`
+        this.setText(this._price, value ? `${value} синапсов` : `Бесценно`)
       }
     
       get price() {// получение цены товара

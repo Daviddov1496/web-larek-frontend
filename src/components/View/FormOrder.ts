@@ -33,8 +33,7 @@ export class FormOrder extends Form<TFormOrder> implements IFormOrder {
     }
 
     protected resetButtons(): void {// очищает класс активности с кнопок "Онлайн" и "При получении"
-        this._buttonCard.classList.remove('button_alt-active');
-        this._buttonCash.classList.remove('button_alt-active');
+        this.toggleClass(this._buttonCard, 'button_alt-active' )
     }
 
     clear() {// Очищает форму
@@ -69,6 +68,6 @@ export class FormOrder extends Form<TFormOrder> implements IFormOrder {
     }
 
     set valid(value: boolean) {// запись для блокировки кнопки submit
-        super.valid = value;
+      this.setDisabled(this._submitButton, value);
     }
 }

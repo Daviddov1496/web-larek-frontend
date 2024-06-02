@@ -30,8 +30,8 @@ export class CardCatalog<T> extends Card<T> implements ICardCatalog {
     }
 
     set image(src: string) {// запись данных изображения товара
-        this._image.src = src;
-        this._image.alt = this.title;
+        this.setImage(this._image, src, this.title)
+       
     }
 
     set category(value: string) {// запись данных категории товара

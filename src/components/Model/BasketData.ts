@@ -36,15 +36,11 @@ export class BasketData extends Model implements IBasketData {
     }
 
     getTotal() {// получить общую сумму и стоимость всех товаров, добавленных в корзину
-        return this._purchases.reduce((sum, purchase) => {
-            return sum + purchase.price;
-        }, 0)
+        return this._purchases.reduce((sum, purchase) => { return sum + purchase.price }, 0);
     }
 
     getIdList() {// получить список id товаров добавленных в корзину (нужен для post запроса при оформлении заказа)
-        return this._purchases.map(purchase => {
-            return purchase.id
-          })
+        return this._purchases.map(purchase => { return purchase.id })
     }
 
     clear(): void {// очистка корзины после успешно оформленного заказа

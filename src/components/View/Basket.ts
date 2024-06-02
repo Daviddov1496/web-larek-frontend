@@ -22,10 +22,10 @@ export class Basket extends View<TBasket> {
     }
 
     set emptyCheck(state: boolean) {// для блокировки кнопки "Оформить" в пустой корзине
-        this.buttonCheckout.disabled = state; 
+        this.setDisabled(this.buttonCheckout, state); 
     }
 
     set total(value: number) {// устанавливает общую стоимость товаров
-        this._totalPrice.textContent = String(value) + ' синапсов';
+        this.setText(this._totalPrice, String(value) + ' синапсов');
     }
 }
