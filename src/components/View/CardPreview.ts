@@ -36,10 +36,12 @@ export class CardPreview extends CardCatalog<TCardPreview> implements ICardPrevi
 
     set state(value: boolean) {// устанавливает состояние кнопки
         if(!this.priceCheck) {
-            this.buttonBuyDelete.textContent = "Не продается";// в модальном окне открыт бесценный товар
+            this.setText(this.buttonBuyDelete, "Не продается");// в модальном окне открыт бесценный товар
         } else {
-            if(value) {this.buttonBuyDelete.textContent = "Убрать из корзины"}//в модальном окне открыт товар, который уже находится в корзине
-            else {this.buttonBuyDelete.textContent  = "Купить"}// в модальном окне открыт товар, которого нет в корзине
+            if(value) {
+                this.setText(this.buttonBuyDelete, "Убрать из корзины")//в модальном окне открыт товар, который уже находится в корзине
+            } else 
+            this.setText(this.buttonBuyDelete, "Купить");// в модальном окне открыт товар, которого нет в корзине
+        }
         }
     }
-}

@@ -73,6 +73,7 @@ export interface IOrderConstructor {
 export interface ISuccessData {
     orderSuccess: TSuccessData;
 }
+
 /** общий интерфейс карточки */
 export interface ICard {
     id: string;
@@ -115,7 +116,7 @@ export interface IModal {
 /** интерфейс для форм приложения */
 export interface IForm {
     valid: boolean;
-    errorMessage: string;
+    errorMessage: string[];
     clear(): void;
 }
 
@@ -158,7 +159,7 @@ export type TCardPreview = IProduct & {priceCheck: boolean; state: boolean};
 export type TPage = {counter: number, catalog: HTMLElement[]};
 export type TBasket = {cardsList: HTMLElement[]; total: number; emptyCheck: boolean};
 export type TModal ={content: HTMLElement};
-export type TForm = {valid: boolean}
+export type TForm = {valid: boolean; errorMessage: string[];}
 export type TPayment = 'card' | 'cash';
 export type TFormOrder = {payment: TPayment; address: string};
 export type TFormContacts = {email: string; phone: string};

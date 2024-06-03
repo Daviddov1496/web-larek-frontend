@@ -4,6 +4,14 @@ import { IEvents } from "../base/events";
 export abstract class View<T> {
     protected container: HTMLElement;// DOM элемент, передаваемый в конструкторе
     protected events: IEvents;// объект класса `EventEmitter` для инициации событий при изменении данных
+    private _wrapper: HTMLButtonElement;
+    private _valid: any;
+    public get valid(): any {
+        return this._valid;
+    }
+    public set valid(value: any) {
+        this._valid = value;
+    }
 
 
     constructor(container: HTMLElement, events: IEvents) {

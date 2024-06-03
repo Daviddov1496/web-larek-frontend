@@ -25,17 +25,16 @@ export class CardCatalog<T> extends Card<T> implements ICardCatalog {
           'другое': 'card__category_other'
         }
         if(value in categoryCSSClassData) {
-          this._category.classList.add(categoryCSSClassData[value])
+          this.toggleClass(this._category, (categoryCSSClassData[value]))
         }
     }
 
     set image(src: string) {// запись данных изображения товара
-        this.setImage(this._image, src, this.title)
-       
+        this.setImage(this._image, src, this.title);
     }
 
     set category(value: string) {// запись данных категории товара
-        this._category.textContent = value;
+        this.setText(this._category, value);
         this.addCSSClassCategory(value);
     }
 

@@ -116,7 +116,10 @@ events.on('purchases:changed', (data: TId) => {
 //после того, как определились с покупками, записываем данные с корзины, необходмые для заказа и переходим к форме доставки: обработаем данное событие
 events.on('modal-order:open', () => {
   orderDataBuilder.purchasesInfo = {total: basketData.getTotal(), items: basketData.getIdList()};
-  modal.render({content: formOrder.render({valid: formOrder.valid})})
+  modal.render({content: formOrder.render({
+    valid: formOrder.valid,
+    errorMessage: []
+  })})
 });
 
 //обработаем взаимодействие пользователя с полями формы доставки
@@ -127,7 +130,10 @@ events.on('order:valid', () => {
 
 //после заполнения формы доставки и записи для заказа соответствующих данных для заказа, переходи к форме контактных данных: обработаем данное событие
 events.on(`order:submit`, () => {
-  modal.render({content: formContacts.render({valid: formContacts.valid})})
+  return modal.render({ content: formContacts.render({
+    valid: formContacts.valid,
+    errorMessage: []
+  }) });
 });
 
 //обработаем взаимодействие пользователя с полями формы контактных данных

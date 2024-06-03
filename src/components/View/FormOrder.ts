@@ -20,20 +20,26 @@ export class FormOrder extends Form<TFormOrder> implements IFormOrder {
             if((event.target === this._buttonCard) || (event.target === this._buttonCash)) {
               const buttonActive = event.target as HTMLButtonElement;
               this.resetButtons();
-              buttonActive.classList.add('button_alt-active');
+              this.toggleClass(buttonActive, 'button_alt-active');// Добавил toggleClass сюда
               this.events.emit('order:valid')
             }
           })
     }
 
     protected getButtonActive(): HTMLButtonElement | null {// метод: возвращает кнопку, которая активна
-        if(this._buttonCard.classList.contains('button_alt-active')) {return this._buttonCard}
-        else if(this._buttonCash.classList.contains('button_alt-active')) {return this._buttonCash}
+        if(this._buttonCard.classList.contains('button_alt-active')) {
+          return this._buttonCard
+        } else if(this._buttonCash.classList.contains('button_alt-active')) {
+          return this._buttonCash
+        }
         return null;
     }
 
     protected resetButtons(): void {// очищает класс активности с кнопок "Онлайн" и "При получении"
-        this.toggleClass(this._buttonCard, 'button_alt-active' )
+        //this.toggleClass(this._buttonCard, 'button_alt-active' );
+        //this.toggleClass(this._buttonCash, 'button_alt-active' );
+        this._buttonCard.classList.remove('button_alt-active');
+        this._buttonCash.classList.remove('button_alt-active');
     }
 
     clear() {// Очищает форму
@@ -49,8 +55,8 @@ export class FormOrder extends Form<TFormOrder> implements IFormOrder {
     get address() {// возвращает адрес покупателя
         return this._inputAddress.value
     }
-
-    get valid() {// возвращает валидность формы
+ 
+    /**get valid() {// возвращает валидность формы
         if(!(super.valid) && Boolean(this.payment)) {
           this.errorMessage ='';
           return false
@@ -69,5 +75,5 @@ export class FormOrder extends Form<TFormOrder> implements IFormOrder {
 
     set valid(value: boolean) {// запись для блокировки кнопки submit
       this.setDisabled(this._submitButton, value);
-    }
+    }*/
 }

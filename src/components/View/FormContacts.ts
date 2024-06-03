@@ -15,6 +15,7 @@ export class FormContacts extends Form<TFormContacts> implements IFormContacts {
     }
 
     get email() {// возвращает email из поля email
+        
         return this._inputEmail.value;
     }
 
@@ -22,7 +23,7 @@ export class FormContacts extends Form<TFormContacts> implements IFormContacts {
         return this._inputPhone.value;
     }
 
-    get valid() {// возвращает валидность формы
+   /**  get valid() {// возвращает валидность формы
         if(Boolean(this._inputEmail.value) && Boolean(this._inputPhone.value)) {
             this.errorMessage= '';
             return false;
@@ -40,5 +41,5 @@ export class FormContacts extends Form<TFormContacts> implements IFormContacts {
 
     set valid(value: boolean) {// запись для блокировки кнопки submit
         this.setDisabled(this._submitButton, value);
-    }
+    }*/
 }
