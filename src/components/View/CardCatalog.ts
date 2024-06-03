@@ -25,7 +25,7 @@ export class CardCatalog<T> extends Card<T> implements ICardCatalog {
           'другое': 'card__category_other'
         }
         if(value in categoryCSSClassData) {
-          this.toggleClass(this._category, (categoryCSSClassData[value]))
+          this.toggleClass(this._category, categoryCSSClassData[value], true)
         }
     }
 

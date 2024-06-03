@@ -15,7 +15,6 @@ export class FormContacts extends Form<TFormContacts> implements IFormContacts {
     }
 
     get email() {// возвращает email из поля email
-        
         return this._inputEmail.value;
     }
 
