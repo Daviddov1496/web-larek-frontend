@@ -36,10 +36,8 @@ export class FormOrder extends Form<TFormOrder> implements IFormOrder {
     }
 
     protected resetButtons(): void {// очищает класс активности с кнопок "Онлайн" и "При получении"
-        //this.toggleClass(this._buttonCard, 'button_alt-active' );
-        //this.toggleClass(this._buttonCash, 'button_alt-active' );
-        this._buttonCard.classList.remove('button_alt-active');
-        this._buttonCash.classList.remove('button_alt-active');
+        this.toggleClass(this._buttonCard, 'button_alt-active', false );
+        this.toggleClass(this._buttonCash, 'button_alt-active', false );
     }
 
     clear() {// Очищает форму
@@ -55,25 +53,4 @@ export class FormOrder extends Form<TFormOrder> implements IFormOrder {
     get address() {// возвращает адрес покупателя
         return this._inputAddress.value
     }
- 
-    /**get valid() {// возвращает валидность формы
-        if(!(super.valid) && Boolean(this.payment)) {
-          this.errorMessage ='';
-          return false
-        }
-        else if ((super.valid) && Boolean(this.payment)) {
-          this.errorMessage = 'Заполните поле адреса';
-          return true
-        }
-        else if ((super.valid) && !Boolean(this.payment)) {
-          this.errorMessage = 'Выберите способ оплаты и заполните поле адреса';
-          return true
-        }
-        this.errorMessage = 'Выберите способ оплаты';
-        return true
-    }
-
-    set valid(value: boolean) {// запись для блокировки кнопки submit
-      this.setDisabled(this._submitButton, value);
-    }*/
 }

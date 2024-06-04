@@ -62,6 +62,3 @@ export abstract class Form<T> extends View<TForm> implements IForm {
         return this.container;
     }
 }       
- //const {valid, ...otherFormData} = data;
-        //this.valid = valid;
-       // return super.render(otherFormData)
