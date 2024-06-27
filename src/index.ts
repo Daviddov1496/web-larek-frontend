@@ -116,7 +116,8 @@ events.on('purchases:changed', (data: TId) => {
 //после того, как определились с покупками, записываем данные с корзины, необходмые для заказа и переходим к форме доставки: обработаем данное событие
 events.on('modal-order:open', () => {
   orderDataBuilder.purchasesInfo = {total: basketData.getTotal(), items: basketData.getIdList()};
-  modal.render({content: formOrder.render({
+  modal.render({
+    content: formOrder.render({
     valid: formOrder.valid,
     errorMessage: []
   })})

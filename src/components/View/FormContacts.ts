@@ -21,4 +21,24 @@ export class FormContacts extends Form<TFormContacts> implements IFormContacts {
     get phone() {// возвращает номер телефона из поля phone
         return this._inputPhone.value;
     }
+
+    /** валидация */
+    get valid() {
+        if(Boolean(this._inputEmail.value) && Boolean(this._inputPhone.value)) {
+          return false
+        }
+        else if(super.valid) {
+          return true
+        }
+        else if(!Boolean(this._inputEmail.value) && Boolean(this._inputPhone.value)) {
+          return true
+        }
+        else if(Boolean(this._inputEmail.value) && !Boolean(this._inputPhone.value)) {
+          return true
+        }
+      }
+    
+      set valid(value: boolean) {
+        super.valid = value;
+      }
 }

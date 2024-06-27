@@ -44,13 +44,33 @@ export class FormOrder extends Form<TFormOrder> implements IFormOrder {
         super.clear();
         this.resetButtons()
     }
+  
 
     get payment() {// возвращает имя активной кнопки
         const buttonActive = this.getButtonActive();
+        
         return buttonActive ? buttonActive.name as TPayment : null; 
     }
 
     get address() {// возвращает адрес покупателя
-        return this._inputAddress.value
+        return this._inputAddress.value;
     }
+  /** валидация */
+    get valid() {
+      if(!(super.valid) && Boolean(this.payment)) {
+        return false
+      }
+      else if ((super.valid) && Boolean(this.payment)) {
+        return true
+      }
+      else if ((super.valid) && !Boolean(this.payment)) {
+        return true
+      }
+      return true
+    }
+
+    set valid(value: boolean) {
+      super.valid = value;
+    }
+
 }

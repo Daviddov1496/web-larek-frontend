@@ -28,6 +28,6 @@ export class Page extends View<TPage> implements IPage {
     }
 
     lockScreen(value: boolean): void {// метод для блокировки прокрутки при открытии модального окна
-        this.toggleClass(this.pageContent, 'page__wrapper_locked');
+        this.toggleClass(this.pageContent, 'page__wrapper_locked', true);
     }
 }

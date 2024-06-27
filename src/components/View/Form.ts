@@ -15,20 +15,21 @@ export abstract class Form<T> extends View<TForm> implements IForm {
         this._inputList = ensureAllElements<HTMLInputElement>('.form__input', container);
         this._submitButton = ensureElement<HTMLButtonElement>('button[type=submit]', container);
         this._errorMessage = ensureElement<HTMLElement>('.form__errors' , container);
-        this.container.addEventListener('submit', (event: Event) => {
-            event.preventDefault();// отключаю поведение по-умолчанию
-            this.events.emit(`${this.container.name}:submit`)
-        });
-        
-        this._inputList.forEach(input => {
-            input.addEventListener('input', () => this.events.emit(`${this.container.name}:valid`))
-        });
         
         this.container.addEventListener('input', (e: Event) => {
             const target = e.target as HTMLInputElement;
             const field = target.name as keyof T;
             const value = target.value;
             this.onInputChange(field, value);
+        });
+
+        this.container.addEventListener('submit', (e: Event) => {
+            e.preventDefault();
+            this.events.emit(`${this.container.name}:submit`);
+        });
+
+        this._inputList.forEach(input => {
+            input.addEventListener('input', () => this.events.emit(`${this.container.name}:valid`))
         });
     }
 
@@ -39,12 +40,12 @@ export abstract class Form<T> extends View<TForm> implements IForm {
         });
     }
 
-    get valid() {// проверка на валидность формы
+    get valid() { // проверка на валидность формы
         return this._inputList.every(input => input.value.length === 0);
     }
 
     set valid(value: boolean) {// для актиации кнопки отправки формы
-        this.setDisabled(this._submitButton, value);
+        this._submitButton.disabled = value;
     }
 
     set errorMessage(value: string[]) {// установка ошибок
@@ -57,8 +58,8 @@ export abstract class Form<T> extends View<TForm> implements IForm {
 
     render(data: Partial<T> & TForm ) {// рендер с учетом валидности и сообшений об ошибках
         const {valid, errorMessage, ..._inputList} = data;
-        super.render({valid, errorMessage})
+        super.render({valid, errorMessage});
         Object.assign(this, _inputList);
         return this.container;
     }
-}       
+} 
